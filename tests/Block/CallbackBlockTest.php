@@ -11,23 +11,26 @@
 namespace Blockr\Block\Tests;
 
 
-use Blockr\Block\SimpleBlock;
+use Blockr\Block\CallbackBlock;
 
-class SimpleBlockTest extends \PHPUnit_Framework_TestCase
+class CallbackBlockTest extends \PHPUnit_Framework_TestCase
 {
     public function testType()
     {
-        $block = new SimpleBlock();
+        $block = new CallbackBlock();
 
-        $this->assertEquals('block.simple', $block->getType());
+        $this->assertEquals('block.callback', $block->getType());
     }
 
     public function testResponse()
     {
-        $block = new SimpleBlock();
-        $block->setReponse('test');
+        $block = new CallbackBlock();
+        $block->setCallback(function() {
+            return 'test';
+        });
 
         $this->assertEquals(true, $block->init());
         $this->assertEquals('test', $block->getResponse());
     }
+
 }

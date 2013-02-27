@@ -37,11 +37,4 @@ class BlockTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('testValue', $block->getArgument('test'));
     }
-
-    public function testType()
-    {
-        $block = new SimpleBlock();
-
-        $this->assertEquals('block.simple', $block->getType());
-    }
 }
