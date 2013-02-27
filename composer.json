@@ -1,0 +1,23 @@
+{
+    "name": "blockr/blockr",
+    "type": "library",
+    "description": "Block manager",
+    "keywords": ["blocks"],
+    "homepage": "https://github.com/nousefreak/Blockr",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dries De Peuter",
+            "email": "dries@nousefreak.be",
+            "homepage": "http://nousefreak.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.4"
+    },
+    "autoload": {
+        "psr-0" : {
+            "Blockr" : "src/"
+        }
+    }
+}
