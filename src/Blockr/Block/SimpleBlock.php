@@ -10,7 +10,7 @@
 
 namespace Blockr\Block;
 
-class SimpleBlock extends Block
+class SimpleBlock extends BaseBlock
 {
     protected $type = 'block.simple';
 

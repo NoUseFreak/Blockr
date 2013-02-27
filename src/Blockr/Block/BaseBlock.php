@@ -10,7 +10,7 @@
 
 namespace Blockr\Block;
 
-abstract class Block implements BlockInterface
+abstract class BaseBlock implements BlockInterface
 {
     protected $name;
 
