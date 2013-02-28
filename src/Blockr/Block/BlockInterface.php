@@ -19,10 +19,4 @@ interface BlockInterface
 
     public function init();
 
-    public function getArguments();
-    public function setArguments($argument);
-
-    public function getArgument($name);
-    public function setArgument($name, $value);
-
 }

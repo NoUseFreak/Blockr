@@ -10,47 +10,68 @@
 
 namespace Blockr\Block;
 
+use Blockr\Context\Context;
+
 abstract class BaseBlock implements BlockInterface
 {
+    /**
+     * @var string|int The blocks identifier.
+     */
     protected $id;
 
+    /**
+     * @var string The type of the block.
+     */
     protected $type = 'block';
 
-    protected $arguments;
+    /**
+     * @var Context The context of the block.
+     */
+    protected $context;
 
+    /**
+     * Set the block's identifier.
+     *
+     * @param string|int $id
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
+    /**
+     * Get the block's identifier
+     *
+     * @return int|string
+     */
     public function getId()
     {
         return $this->id;
     }
 
-    public function setArguments($arguments)
-    {
-        $this->arguments = $arguments;
-    }
-
-    public function getArguments()
-    {
-        return $this->arguments;
-    }
-
-    public function setArgument($name, $value)
-    {
-        $this->arguments[$name] = $value;
-    }
-
-    public function getArgument($name)
-    {
-        return $this->arguments[$name];
-    }
-
+    /**
+     * Get the block's type.
+     *
+     * @return string
+     */
     public function getType()
     {
         return $this->type;
     }
 
+    /**
+     * @param Context $context
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+    }
+
+    /**
+     * @return Context
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
 }

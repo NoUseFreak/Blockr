@@ -11,6 +11,7 @@
 namespace Tests\Blockr\Block;
 
 use Blockr\Block\SimpleBlock;
+use Blockr\Context\Context;
 
 class BlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,19 +23,11 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('test', $block->getId());
     }
 
-    public function testArguments()
+    public function testContext()
     {
         $block = new SimpleBlock();
-        $block->setArguments(array('test' => 'testValue'));
+        $block->setContext(new Context());
 
-        $this->assertEquals(array('test' => 'testValue'), $block->getArguments());
-    }
-
-    public function testArgument()
-    {
-        $block = new SimpleBlock();
-        $block->setArgument('test', 'testValue');
-
-        $this->assertEquals('testValue', $block->getArgument('test'));
+        $this->assertEquals(new Context(), $block->getContext());
     }
 }

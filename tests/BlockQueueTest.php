@@ -66,4 +66,11 @@ class BlockTest extends \PHPUnit_Framework_TestCase
             $index--;
         }
     }
+
+    public function testException()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+
+        $this->queue->insert('string');
+    }
 }
