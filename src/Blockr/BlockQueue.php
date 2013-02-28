@@ -16,8 +16,11 @@ class BlockQueue extends \SplPriorityQueue
 {
     protected $serial = PHP_INT_MAX;
 
-    public function insert(BlockInterface $value, $priority = 0)
+    public function insert($value, $priority = 0)
     {
+        if (!($value instanceof BlockInterface)) {
+            throw new \InvalidArgumentException('Only blocks can be inserted in the blockQueue.');
+        }
         parent::insert($value, array($priority, $this->serial--));
     }
 }
