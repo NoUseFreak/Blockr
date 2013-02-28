@@ -14,12 +14,12 @@ use Blockr\Block\SimpleBlock;
 
 class BlockTest extends \PHPUnit_Framework_TestCase
 {
-    public function testName()
+    public function testId()
     {
         $block = new SimpleBlock();
-        $block->setName('test');
+        $block->setId('test');
 
-        $this->assertEquals('test', $block->getName());
+        $this->assertEquals('test', $block->getId());
     }
 
     public function testArguments()
