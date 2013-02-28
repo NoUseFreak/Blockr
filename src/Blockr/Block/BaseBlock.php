@@ -11,6 +11,7 @@
 namespace Blockr\Block;
 
 use Blockr\Context\Context;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class BaseBlock implements BlockInterface
 {
@@ -28,6 +29,11 @@ abstract class BaseBlock implements BlockInterface
      * @var Context The context of the block.
      */
     protected $context;
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\Response
+     */
+    protected $response;
 
     /**
      * Set the block's identifier.
@@ -73,5 +79,21 @@ abstract class BaseBlock implements BlockInterface
     public function getContext()
     {
         return $this->context;
+    }
+
+    /**
+     * @param Response $response
+     */
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }

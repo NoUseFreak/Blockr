@@ -21,13 +21,4 @@ class SimpleBlockTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('block.simple', $block->getType());
     }
-
-    public function testResponse()
-    {
-        $block = new SimpleBlock();
-        $block->setReponse('test');
-
-        $this->assertEquals(true, $block->init());
-        $this->assertEquals('test', $block->getResponse());
-    }
 }

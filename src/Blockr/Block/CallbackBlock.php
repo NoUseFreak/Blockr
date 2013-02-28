@@ -10,11 +10,15 @@
 
 namespace Blockr\Block;
 
+/**
+ * Class CallbackBlock
+ */
 class CallbackBlock extends BaseBlock
 {
+    /**
+     * @var string The type of the block.
+     */
     protected $type = 'block.callback';
-
-    protected $response;
 
     protected $callback;
 

@@ -12,6 +12,7 @@ namespace Tests\Blockr\Block;
 
 use Blockr\Block\SimpleBlock;
 use Blockr\Context\Context;
+use Symfony\Component\HttpFoundation\Response;
 
 class BlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,5 +30,20 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         $block->setContext(new Context());
 
         $this->assertEquals(new Context(), $block->getContext());
+    }
+
+    public function testResponse()
+    {
+        $block = new SimpleBlock();
+        $block->setResponse(new Response());
+
+        $this->assertEquals(new Response(), $block->getResponse());
+    }
+
+    public function testInit()
+    {
+        $block = new SimpleBlock();
+
+        $this->assertEquals(true, $block->init());
     }
 }

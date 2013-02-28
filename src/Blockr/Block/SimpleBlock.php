@@ -14,18 +14,6 @@ class SimpleBlock extends BaseBlock
 {
     protected $type = 'block.simple';
 
-    protected $response;
-
-    public function setReponse($response)
-    {
-        $this->response = $response;
-    }
-
-    public function getResponse()
-    {
-        return $this->response;
-    }
-
     public function init()
     {
         return true;
