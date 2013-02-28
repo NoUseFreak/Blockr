@@ -14,6 +14,7 @@
     ],
     "require": {
         "php": ">=5.3.4",
+        "doctrine/common": "2.3.0",
         "symfony/http-foundation": "v2.2.0-RC2"
     },
     "require-dev": {
