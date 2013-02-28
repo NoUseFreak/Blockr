@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Blockr\Block\Tests;
+namespace Tests\Blockr\Block;
 
 
 use Blockr\Block\CallbackBlock;
