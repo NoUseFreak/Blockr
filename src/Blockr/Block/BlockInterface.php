@@ -14,8 +14,8 @@ interface BlockInterface
 {
     public function getType();
 
-    public function getName();
-    public function setName($name);
+    public function getId();
+    public function setId($id);
 
     public function init();
 

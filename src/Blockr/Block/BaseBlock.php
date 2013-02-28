@@ -12,20 +12,20 @@ namespace Blockr\Block;
 
 abstract class BaseBlock implements BlockInterface
 {
-    protected $name;
+    protected $id;
 
     protected $type = 'block';
 
     protected $arguments;
 
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
     }
 
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     public function setArguments($arguments)
