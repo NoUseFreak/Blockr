@@ -10,8 +10,6 @@
 
 namespace Blockr;
 
-use Blockr\Block\SimpleBlock;
-
 class BlockManager
 {
     protected $queue;
