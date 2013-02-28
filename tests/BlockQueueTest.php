@@ -14,7 +14,7 @@ use Blockr\Block\CallbackBlock;
 use Blockr\Block\SimpleBlock;
 use Blockr\BlockQueue;
 
-class BlockTest extends \PHPUnit_Framework_TestCase
+class BlockQueueTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var BlockQueue
