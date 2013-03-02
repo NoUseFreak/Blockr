@@ -46,4 +46,11 @@ class BlockTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(true, $block->init());
     }
+
+    public function testMedia()
+    {
+        $block = new SimpleBlock();
+
+        $this->assertInstanceOf('\\Blockr\\Media\\Media', $block->getMedia());
+    }
 }

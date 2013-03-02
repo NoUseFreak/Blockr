@@ -27,11 +27,6 @@ class CallbackBlock extends BaseBlock
         $this->callback = $callback;
     }
 
-    public function getResponse()
-    {
-        return $this->response;
-    }
-
     public function init()
     {
         $this->response = call_user_func($this->callback, $this);

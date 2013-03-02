@@ -11,6 +11,7 @@
 namespace Blockr\Block;
 
 use Blockr\Context\Context;
+use Blockr\Media\Media;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class BaseBlock implements BlockInterface
@@ -34,6 +35,11 @@ abstract class BaseBlock implements BlockInterface
      * @var \Symfony\Component\HttpFoundation\Response
      */
     protected $response;
+
+    /**
+     * @var Media
+     */
+    protected $media;
 
     /**
      * Set the block's identifier.
@@ -68,7 +74,7 @@ abstract class BaseBlock implements BlockInterface
     /**
      * @param Context $context
      */
-    public function setContext($context)
+    public function setContext(Context $context)
     {
         $this->context = $context;
     }
@@ -95,5 +101,16 @@ abstract class BaseBlock implements BlockInterface
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * @return Media
+     */
+    public function getMedia()
+    {
+        if (is_null($this->media)) {
+            $this->media = new Media();
+        }
+        return $this->media;
     }
 }

@@ -19,4 +19,6 @@ interface BlockInterface
 
     public function init();
 
+    public function getResponse();
+    public function getMedia();
 }
