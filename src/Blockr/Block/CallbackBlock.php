@@ -13,7 +13,7 @@ namespace Blockr\Block;
 /**
  * Class CallbackBlock
  */
-class CallbackBlock extends BaseBlock
+class CallbackBlock extends BaseBlock implements CacheableBlockInterface
 {
     /**
      * @var string The type of the block.
@@ -21,6 +21,8 @@ class CallbackBlock extends BaseBlock
     protected $type = 'block.callback';
 
     protected $callback;
+
+    protected $ttl = 0;
 
     public function setCallback($callback)
     {
@@ -31,5 +33,15 @@ class CallbackBlock extends BaseBlock
     {
         $this->response = call_user_func($this->callback, $this);
         return true;
+    }
+
+    public function getTtl()
+    {
+        return $this->ttl;
+    }
+
+    public function getCacheKey()
+    {
+        return $this->getId();
     }
 }

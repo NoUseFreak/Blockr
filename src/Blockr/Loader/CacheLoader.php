@@ -10,6 +10,8 @@
 
 namespace Blockr\Loader;
 
+use Blockr\Block\BlockInterface;
+use Blockr\Block\CacheableBlockInterface;
 use Doctrine\Common\Cache\Cache;
 
 class CacheLoader implements LoaderInterface
@@ -24,9 +26,13 @@ class CacheLoader implements LoaderInterface
     /**
      * {@inheritdoc}
      */
-    public function load($id)
+    public function fetch($id)
     {
-        $this->cacheDriver->fetch($id);
+        return $this->cacheDriver->fetch($id);
     }
 
+    public function save(CacheableBlockInterface $block)
+    {
+        return $this->cacheDriver->save($block->getCacheKey() ,$block, $block->getTtl());
+    }
 }

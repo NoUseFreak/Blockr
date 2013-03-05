@@ -11,6 +11,7 @@
 namespace Blockr\Loader;
 
 use Blockr\Block\BlockInterface;
+use Blockr\Block\CacheableBlockInterface;
 
 interface LoaderInterface
 {
@@ -22,5 +23,15 @@ interface LoaderInterface
      *
      * @return BlockInterface
      */
-    public function load($id);
+    public function fetch($id);
+
+    /**
+     * Save the block to the cache.
+     *
+     * @param $id
+     * @param \Blockr\Block\CacheableBlockInterface $block
+     *
+     * @return mixed
+     */
+    public function save(CacheableBlockInterface $block);
 }
