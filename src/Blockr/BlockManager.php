@@ -136,6 +136,7 @@ class BlockManager
     {
         $blocks = array();
 
+        /* @var $block BlockInterface */
         foreach ($this->blocks as $block) {
 
             $block->setContext($this->context);

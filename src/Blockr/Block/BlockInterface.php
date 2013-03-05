@@ -10,6 +10,8 @@
 
 namespace Blockr\Block;
 
+use Blockr\Context\Context;
+
 interface BlockInterface
 {
     public function getType();
@@ -21,4 +23,6 @@ interface BlockInterface
 
     public function getResponse();
     public function getMedia();
+
+    public function setContext(Context $context);
 }
