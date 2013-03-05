@@ -11,6 +11,9 @@
 namespace Blockr;
 
 use Blockr\Block\BlockInterface;
+use Blockr\Block\CacheableBlockInterface;
+use Blockr\Context\Context;
+use Blockr\Loader\LoaderInterface;
 
 class BlockManager
 {
@@ -25,17 +28,23 @@ class BlockManager
     protected $blockHashes = array();
 
     /**
-     * @var BlockQueue
+     * @var LoaderInterface
      */
-    protected $queue;
+    protected $loader;
+
+    /**
+     * @var Context
+     */
+    protected $context;
 
     /**
      * Construct all containers.
      */
-    public function __construct()
+    public function __construct(LoaderInterface $loader, Context $context)
     {
         $this->blocks = new \SplObjectStorage();
-        $this->queue = new BlockQueue();
+        $this->loader = $loader;
+        $this->context = $context;
     }
 
     /**
@@ -118,5 +127,27 @@ class BlockManager
     public function getById($id)
     {
         return $this->blockHashes[$id];
+    }
+
+    /**
+     *
+     */
+    public function build()
+    {
+        $blocks = array();
+
+        foreach ($this->blocks as $block) {
+
+            $block->setContext($this->context);
+            if ($block instanceof CacheableBlockInterface) {
+                $block = $this->loader->fetch($block->getCacheKey());
+            }
+            else {
+                $block->init();
+            }
+            $blocks[] = $block;
+        }
+
+        return $blocks;
     }
 }

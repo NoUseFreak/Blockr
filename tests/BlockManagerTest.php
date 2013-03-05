@@ -13,6 +13,9 @@ namespace Tests\Blockr;
 use Blockr\Block\SimpleBlock;
 use Blockr\BlockManager;
 use Blockr\BlockQueue;
+use Blockr\Context\Context;
+use Blockr\Loader\CacheLoader;
+use Doctrine\Common\Cache\ArrayCache;
 
 class BlockManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,7 +26,8 @@ class BlockManagerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->manager = new BlockManager();
+        $loader = new CacheLoader(new ArrayCache());
+        $this->manager = new BlockManager($loader, new Context());
     }
 
     public function tearDown()
@@ -111,6 +115,16 @@ class BlockManagerTest extends \PHPUnit_Framework_TestCase
         $this->manager->removeById('test');
 
         $this->assertEquals(false, $this->manager->has($block));
+    }
+
+    public function testBuild()
+    {
+        $block = new SimpleBlock();
+        $block->setId('test');
+
+        $this->manager->add($block);
+
+        $this->assertEquals(array($block), $this->manager->build());
     }
 
 }
