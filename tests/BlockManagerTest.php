@@ -127,4 +127,53 @@ class BlockManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array($block), $this->manager->build());
     }
 
+    public function testMediaMerge()
+    {
+        $block1 = new SimpleBlock();
+        $block1->setId('test');
+        $block1->getMedia()->add('key1', 'value1');
+
+        $block2 = new SimpleBlock();
+        $block2->setId('test');
+        $block2->getMedia()->add('key2', 'value2');
+
+        $this->manager->add($block1);
+        $this->manager->add($block2);
+
+        $this->manager->build();
+
+        $this->assertEquals(array('key1' => 'value1', 'key2' => 'value2'), $this->manager->getMedia());
+    }
+
+    public function testMediaOverwrite()
+    {
+        $block1 = new SimpleBlock();
+        $block1->setId('test');
+        $block1->getMedia()->add('key1', 'value1');
+
+        $block2 = new SimpleBlock();
+        $block2->setId('test');
+        $block2->getMedia()->add('key1', 'value2');
+
+        $this->manager->add($block1);
+        $this->manager->add($block2);
+
+        $this->manager->build();
+
+        $this->assertEquals(array('key1' => 'value2'), $this->manager->getMedia());
+    }
+
+    public function testMediaException()
+    {
+        $this->setExpectedException('Exception');
+
+        $this->manager->getMedia();
+    }
+
+    public function testMediaEmpty()
+    {
+        $this->manager->build();
+
+        $this->assertEquals(array(), $this->manager->getMedia());
+    }
 }

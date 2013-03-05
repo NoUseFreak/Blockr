@@ -38,6 +38,11 @@ class BlockManager
     protected $context;
 
     /**
+     * @var
+     */
+    protected $media;
+
+    /**
      * Construct all containers.
      */
     public function __construct(LoaderInterface $loader, Context $context)
@@ -135,6 +140,7 @@ class BlockManager
     public function build()
     {
         $blocks = array();
+        $this->media = array();
 
         /* @var $block BlockInterface */
         foreach ($this->blocks as $block) {
@@ -146,9 +152,18 @@ class BlockManager
             else {
                 $block->init();
             }
+            $this->media = array_merge($this->media, $block->getMedia()->all());
             $blocks[] = $block;
         }
 
         return $blocks;
+    }
+
+    public function getMedia()
+    {
+        if (is_null($this->media)) {
+            throw new \Exception('Media is only available after building');
+        }
+        return $this->media;
     }
 }
