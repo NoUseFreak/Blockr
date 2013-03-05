@@ -12,6 +12,7 @@ namespace Tests\Blockr\Block;
 
 
 use Blockr\Block\CallbackBlock;
+use Blockr\Context\Context;
 
 class CallbackBlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,6 +32,20 @@ class CallbackBlockTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(true, $block->init());
         $this->assertEquals('test', $block->getResponse());
+    }
+
+    public function testCacheContext()
+    {
+        $block1 = new CallbackBlock();
+        $block1->setContext(new Context());
+
+        $block2 = new CallbackBlock();
+        $context = new Context();
+        $context->add('test', 'value');
+        $block2->setContext($context);
+
+        $this->assertNotEquals($block1->getCacheKey(), $block2->getCacheKey());
+        $this->assertEquals($block1->getCacheKey(), $block1->getCacheKey());
     }
 
 }
