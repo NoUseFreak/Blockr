@@ -20,28 +20,53 @@ class CallbackBlock extends BaseBlock implements CacheableBlockInterface
      */
     protected $type = 'block.callback';
 
+    /**
+     * @var callable The callback to get the response.
+     */
     protected $callback;
 
+    /**
+     * @var int The time to live.
+     */
     protected $ttl = 0;
 
+    /**
+     * Set the callback.
+     *
+     * @param callable $callback
+     */
     public function setCallback($callback)
     {
         $this->callback = $callback;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function init()
     {
         $this->response = call_user_func($this->callback, $this);
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTtl()
     {
         return $this->ttl;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCacheKey()
     {
-        return $this->getId();
+        if (isset($this->context)) {
+            return $this->getId() . md5(serialize($this->getContext()->all()));
+        }
+        else {
+            return $this->getId();
+        }
     }
 }
