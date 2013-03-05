@@ -25,4 +25,10 @@ interface BlockInterface
     public function getMedia();
 
     public function setContext(Context $context);
+
+    /**
+     * @return Context
+     */
+    public function getContext();
+
 }

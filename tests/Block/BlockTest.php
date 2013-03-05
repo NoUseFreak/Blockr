@@ -10,6 +10,8 @@
 
 namespace Tests\Blockr\Block;
 
+use Blockr\Block\BlockInterface;
+use Blockr\Block\CallbackBlock;
 use Blockr\Block\SimpleBlock;
 use Blockr\Context\Context;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,5 +54,20 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         $block = new SimpleBlock();
 
         $this->assertInstanceOf('\\Blockr\\Media\\Media', $block->getMedia());
+    }
+
+    public function testContextAlter()
+    {
+        $context = new Context();
+        $block = new CallbackBlock();
+
+        $block->setContext($context);
+        $block->setCallback(function(BlockInterface $block) {
+            $block->getContext()->add('key', 'value');
+        });
+        $block->init();
+
+        $this->assertEquals('value', $context->get('key'));
+        $this->assertEquals('default', $context->get('unknown', 'default'));
     }
 }
